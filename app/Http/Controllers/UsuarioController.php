@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 
-use App\Models\Usuario;
+use App\Models\User;
 
 class UsuarioController extends Controller
 {
-    
+    /**
+     * Display a listing of usuarios.
+     */
+    public function index()
+    {
+        $usuarios = User::all();
+        return view('usuarios.index', ['usuarios' => $usuarios]);
+    }
+
     function show($id)
     {
         $url = route('usuario.show', ['id' => 5]);
@@ -27,6 +35,5 @@ class UsuarioController extends Controller
 
         $usuario->create(['nombre'=>'Andrés', 'email' => 'andres_calamaro@gmail.com']);
     }
-
 
 }

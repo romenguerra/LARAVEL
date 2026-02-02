@@ -43,4 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/libro/destroy/{i}', [LibroController::class, 'destroy'])->name('libro.destroy');
     Route::post('/libro/destroy', [LibroController::class, 'destroy'])->name('libro.destroy');
 
+    // Rutas de usuarios
+    Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuario/show/{id}', [UsuarioController::class, 'show'])->name('usuario.show');
+
 });
