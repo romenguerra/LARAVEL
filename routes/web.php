@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Datos;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LibroController;
+use App\Http\Controllers\TareaController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -59,5 +60,23 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/usuarios/destroy/{i}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
     Route::post('/usuarios/destroy', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+
+
+    //rutas de tareas
+
+    Route::get('/tareas', [TareaController::class, 'index'])->name('tareas.index');
+
+    Route::get('/tareas/create', [TareaController::class, 'create'])->name('tareas.create');
+    Route::post('/tareas/create', [TareaController::class, 'create'])->name('tareas.create');
+
+
+    Route::get('/tareas/edit/{i}', [TareaController::class, 'edit'])->name('tareas.edit');
+    Route::post('/tareas/edit', [TareaController::class, 'edit'])->name('tareas.edit');
+
+    
+    Route::get('/tareas/show/{id}', [TareaController::class, 'show'])->name('tareas.show');
+
+    Route::get('/tareas/destroy/{i}', [TareaController::class, 'destroy'])->name('tareas.destroy');
+    Route::post('/tareas/destroy', [TareaController::class, 'destroy'])->name('tareas.destroy');
 
 });

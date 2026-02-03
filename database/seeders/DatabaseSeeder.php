@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Libro;
+use App\Models\Tarea;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -40,6 +41,27 @@ class DatabaseSeeder extends Seeder
             'email' => 'romenguerra@gmail.com',
             'password' => Hash::make('230904'),
         ]);
+
+        User::factory()->create([
+            'name' => 'Estudiante1',
+            'email' => 'estudiante@gmail.com',
+            'password' => Hash::make('0000'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Profesor1',
+            'email' => 'profesor@gmail.com',
+            'password' => Hash::make('0000'),
+        ]);
+
+
+        $tarea = new Tarea();
+        $tarea->titulo = 'Actividad 1 sobre Laravel';
+        $tarea->descripcion = 'Realizar una investigación detallada sobre el framework Laravel, sus características y ventajas.';
+        $tarea->asignatura = 'Desarrollo Web';
+        $tarea->fecha_entrega = '2026-02-15';
+        $tarea->profesor_id = 3;
+        $tarea->save();
 
 
         $libro = new Libro();
@@ -285,10 +307,20 @@ class DatabaseSeeder extends Seeder
 
         $admin = Role::create(['name' => 'admin']);
         $editor = Role::create(['name' => 'editor']);
+        
+        $profesor = Role::create(['name' => 'profesor']);
+        $estudiante = Role::create(['name' => 'estudiante']);
 
         $createPost = Permission::create(['name' => 'create post']);
         $editPost = Permission::create(['name' => 'edit post']);
         $deletePost = Permission::create(['name' => 'delete post']);
+
+        $createTarea = Permission::create(['name' => 'create tarea']);
+        $editTarea = Permission::create(['name' => 'edit tarea']);
+        $deleteTarea = Permission::create(['name' => 'delete tarea']);
+
+        $profesor->givePermissionTo($createTarea, $editTarea, $deleteTarea);
+        $estudiante->givePermissionTo();
 
         $admin->givePermissionTo($createPost, $editPost, $deletePost);
         $editor->givePermissionTo($editPost);
@@ -296,6 +328,12 @@ class DatabaseSeeder extends Seeder
 
         $user = User::find(2);
         $user->assignRole('admin');
+
+        $profesorUser = User::find(3);
+        $profesorUser->assignRole('profesor');
+
+        $estudianteUser = User::find(5);
+        $estudianteUser->assignRole('estudiante');
 
     }
 }
