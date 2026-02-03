@@ -22,9 +22,14 @@
                 <tr>
                     <th>
                         <a href="{{ route('tareas.show', $tarea->id) }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
-                        <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                        <a href="{{ route('tareas.destroy', $tarea->id) }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                    </th>
+                        
+                        
+                        @hasanyrole('profesor|admin')
+                            <a href="{{ route('tareas.edit', $tarea->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ route('tareas.destroy', $tarea->id) }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                        @endhasanyrole
+                    
+                        </th>
                     <td>{{ $tarea->titulo }}</td>
                     <td>{{ $tarea->descripcion }}</td>
                     <td>{{ $tarea->asignatura }}</td>
@@ -35,7 +40,10 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ route('tareas.create') }}">Nueva Tarea</a>
+
+    @hasanyrole('profesor|admin')
+        <a class="btn btn-primary" href="{{ route('tareas.create') }}">Nueva Tarea</a>
+    @endhasanyrole
 
 </div>
 
