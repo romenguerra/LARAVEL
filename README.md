@@ -57,3 +57,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+###############
+# Actualizar e instalar
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y php8.4 php8.4-cli php8.4-common php8.4-mysql php8.4-zip php8.4-gd php8.4-mbstring php8.4-curl php8.4-xml php8.4-bcmath php8.4-fpm
+
+# Cambiar PHP
+sudo a2dismod php8.3 && sudo a2enmod php8.4 && sudo systemctl restart apache2
+
+# Composer
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+# Proyecto
+cd /var/www && sudo unzip proyecto.zip && sudo chown -R $USER:$USER nombre_proyecto/ && cd nombre_proyecto
+
+# Laravel
+cp .env.example .env && composer install && php artisan key:generate
+
+# Permisos
+sudo chown -R www-data:www-data storage bootstrap/cache && sudo chmod -R 775 storage bootstrap/cache
+
+# Apache
+sudo a2enmod rewrite && sudo a2dissite 000-default.conf && sudo systemctl restart apache2
+
+# Migraciones (si las hay)
+php artisan migrate
