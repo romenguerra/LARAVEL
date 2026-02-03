@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Datos;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LibroController;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +46,18 @@ Route::middleware('auth')->group(function () {
 
     // Rutas de usuarios
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
-    Route::get('/usuario/show/{id}', [UsuarioController::class, 'show'])->name('usuario.show');
+
+    Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+
+
+    Route::get('/usuarios/edit/{i}', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+    Route::post('/usuarios/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+
+    
+    Route::get('/usuarios/show/{id}', [UsuarioController::class, 'show'])->name('usuarios.show');
+
+    Route::get('/usuarios/destroy/{i}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+    Route::post('/usuarios/destroy', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 
 });

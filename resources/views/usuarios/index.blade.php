@@ -17,9 +17,9 @@
             @foreach ($usuarios as $usuario)       
                 <tr>
                     <th>
-                        <a href="{{ route('usuario.show', $usuario->id) }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
-                        <a href="#" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                        <a href="{{ route('usuarios.show', $usuario->id) }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
+                        <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ route('usuarios.destroy', $usuario->id) }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                     </th>
                     <td>{{ $usuario->nombre }}</td>
                     <td>{{ $usuario->email }}</td>
@@ -29,7 +29,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="#">Nuevo Usuario</a>
+    <a class="btn btn-primary" href="{{ route('usuarios.create') }}">Nuevo Usuario</a>
 
 </div>
 
