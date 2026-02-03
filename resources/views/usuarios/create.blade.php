@@ -49,10 +49,12 @@
             <div id="emailHelp" class="form-text">La contraseña del usuario.</div>
         </div>
 
-        <div class="mb-3">
-            <label for="idpassword_confirmation" class="form-label">Confirmar Contraseña</label>
-            <input {{ $disabled }} type="password" name="password_confirmation" class="form-control" id="idpassword_confirmation">
-        </div>
+        @if ($oper == 'create')
+            <div class="mb-3">
+                <label for="idpassword_confirmation" class="form-label">Confirmar Contraseña</label>
+                <input {{ $disabled }} type="password" name="password_confirmation" class="form-control" id="idpassword_confirmation">
+            </div>
+        @endif
         
 
         @if (!$disabled)
