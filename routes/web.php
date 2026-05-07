@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
     //rutas de tareas
 
     
-    Route::get('/tareas', [TareaController::class, 'index'])->name('tareas.index');
+    Route::get('/tareasssss', [TareaController::class, 'index'])->name('tareas.index');
     Route::get('/tareas/show/{id}', [TareaController::class, 'show'])->name('tareas.show');
 
 
