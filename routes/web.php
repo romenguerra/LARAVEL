@@ -81,5 +81,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/tareas/destroy/{i}', [TareaController::class, 'destroy'])->name('tareas.destroy');
     Route::post('/tareas/destroy', [TareaController::class, 'destroy'])->name('tareas.destroy');
 
-    });
-});
+    Route::get('/tareasss', [TareaController::class, 'index'])->name('tareas.index');
+    Route::get('/tareas/show/{id}', [TareaController::class, 'show'])->name('tareas.show');
+
+
+    Route::middleware(['role:profesor|admin'])->group(function () {
+    Route::get('/tareas/create', [TareaController::class, 'create'])->name('tareas.create');
+    Route::post('/tareas/create', [TareaController::class, 'create'])->name('tareas.create');
+
+
+    Route::get('/tareas/edit/{i}', [TareaController::class, 'edit'])->name('tareas.edit');
+    Route::post('/tareas/edit', [TareaController::class, 'edit'])->name('tareas.edit');
+
+    
+    Route::get('/tareas/destroy/{i}', [TareaController::class, 'destroy'])->name('tareas.destroy');
+    Route::post('/tareas/destroy', [TareaController::class, 'destroy'])->name('tareas.destroy');
+
+    
+};
